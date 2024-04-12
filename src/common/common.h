@@ -5,3 +5,6 @@
 char* Posix_Path();
 char* Win32_Path();
 
+void DispErrMsg();
+void DispUnknownErr();
+
