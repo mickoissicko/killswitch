@@ -15,8 +15,8 @@
 #define BUF_SIZ 1024
 #define MAX_SIZ 1
 
-const static std::string LOIDR = "Loidr";
-const static char DEPS[] = "";
+const static char LOIDR[] = "Loidr";
+const static char DEPS[] = "https://raw.githubusercontent.com/mickoissicko/killswitch/main/pkgs/test_tarball_1.tar.gz";
 
 int main()
 {
@@ -39,7 +39,6 @@ int main()
 
     while (
         !!strcasecmp(Ui, "1") &&
-        !!strcasecmp(Ui, "2") &&
         !!strcasecmp(Ui, "X")
     ){
         std::cout << "> ";
@@ -56,18 +55,58 @@ int main()
             #endif
 
             chdir(Path);
+
             if (!std::filesystem::exists(LOIDR))
             {
                 std::filesystem::create_directories(LOIDR);
+
+                if (!std::filesystem::exists(LOIDR))
+                    DispUnknownErr();
+
+                else
+                    chdir(LOIDR);
+
                 std::cout << "Downloading files required..." << '\n';
                 std::cout << "If the download fails, please manually install 'wget'" << '\n';
-                std::system("wget ");
+
+                int Status = std::system(DownloadCommand);
+
+                if (Status != 0)
+                    DispErrMsg();
+
+                std::cout << "Extracting..." << '\n';
+                std::cout << "If extracting fails, please manually install 'tar'" << '\n';
+
+                Status = std::system("tar -xzf test_tarball_1.tar.gz");
+
+                if (Status != 0)
+                    DispErrMsg();
             }
         break;
+
+        default: break;
     }
 
+    free (DownloadCommand);
     free (Path);
     free (Ui);
+
     return 0;
+}
+
+void DispErrMsg()
+{
+    std::cerr << "An error occurred: " << stderr << '\n';
+    std::cout << "Please check the wiki for instructions" << '\n';
+
+    exit(1);
+}
+
+void DispUnknownErr()
+{
+    std::cerr << "An unexpected exception occurred: " << stderr << '\n';
+    std::cout << "Please check the wiki for instructions" << '\n';
+
+    exit(1);
 }
 
