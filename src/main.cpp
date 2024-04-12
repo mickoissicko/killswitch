@@ -1,15 +1,12 @@
 #include "common/common.h"
-// I have no idea why it isn't 'cstring' or 'string.h'
-// Keeps giving me a warning when I use 'cstring'
-// Says unused
-// So I have to include strings.h because there is no cstrings
-// And that's why I'm doing the same for stdlib.h
+
 #include <filesystem>
-#include <strings.h>
 #include <unistd.h>
 #include <iostream>
-#include <stdlib.h>
-#include <stdio.h>
+#include <fstream>
+#include <cstring>
+#include <cstdlib>
+#include <cstdio>
 
 #define MAX_PATH_SIZ 4096
 #define BUF_SIZ 1024
@@ -18,8 +15,14 @@
 const static char LOIDR[] = "Loidr";
 const static char DEPS[] = "https://raw.githubusercontent.com/mickoissicko/killswitch/main/pkgs/test_tarball_1.tar.gz";
 
-int main()
+int main(int argc, char* argv[])
 {
+    if (argc > 1 && !strcmp(argv[1], "--reinstall"))
+    {
+        std::cout << "Reinstalling..." << '\n';
+        Reinstall();
+    }
+
     char* DownloadCommand;
     unsigned long Buf = BUF_SIZ;
 
@@ -81,7 +84,16 @@ int main()
 
                 if (Status != 0)
                     DispErrMsg();
+
+                std::cout << "Processing..." << '\n';
+
+                std::ofstream LockFile("lock.pa");
+                LockFile << "If you delete this file, LOIDR will reinstall itself!" << '\n';
+                LockFile.close();
+                Install();
             }
+
+            CheckLockFile();
         break;
 
         default: break;
@@ -94,19 +106,22 @@ int main()
     return 0;
 }
 
-void DispErrMsg()
+void CheckLockFile()
 {
-    std::cerr << "An error occurred: " << stderr << '\n';
-    std::cout << "Please check the wiki for instructions" << '\n';
-
-    exit(1);
-}
-
-void DispUnknownErr()
-{
-    std::cerr << "An unexpected exception occurred: " << stderr << '\n';
-    std::cout << "Please check the wiki for instructions" << '\n';
-
-    exit(1);
+    chdir(LOIDR);
+    std::ifstream LockFile("lock.pa");
+    if (!LockFile.is_open())
+    {
+        std::cout << "Corrupt folder" << '\n';
+        chdir("..");
+        std::filesystem::remove_all(LOIDR);
+        std::cout << "Run the program again" << '\n';
+        exit(1);
+    }
+    if (LockFile.is_open())
+    {
+        LockFile.close();
+        Menu();
+    }
 }
 
