@@ -73,6 +73,7 @@ void Install()
         DispErrMsg();
 
     #ifdef _WIN32
+        printf("Installing Python...\n");
         system("win32_installer.bat");
     #else
         // No fucking idea why this is giving me a warning
