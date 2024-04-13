@@ -1,7 +1,37 @@
+#include "common/common.h"
+#include "common/consts.h"
+
+#include <unistd.h>
+#include <stdlib.h>
 #include <stdio.h>
+
+#define MAX_SIZ 4096
 
 void Menu()
 {
-    printf("Still being worked on\n");
+    char* Path = (char*)malloc(MAX_SIZ * sizeof(char));
+
+    #ifdef _WIN32
+        Path = Win32_Path();
+    #else
+        Path = Posix_Path();
+    #endif
+
+    chdir(Path);
+    free(Path);
+
+    chdir(LOIDR);
+    printf("Loading...\n");
+
+    #ifdef _WIN32
+        chdir("scripts");
+        system("win32_starter.sh");
+    #else
+        chdir("scripts");
+        system("chmod +x posix_starter.sh");
+        system("./posix_starter.sh");
+    #endif
+
+    exit(0);
 }
 
