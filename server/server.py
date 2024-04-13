@@ -12,6 +12,7 @@ class Handler(BaseHTTPRequestHandler):
             self.end_headers()
             with open('public/index.htm', 'rb') as file:
                 self.wfile.write(file.read())
+
         elif parsed_path.path == '/t/':
             self.send_response(200)
             self.send_header('Content-type', 'text/html')
@@ -19,10 +20,12 @@ class Handler(BaseHTTPRequestHandler):
             print("Terminate loaded!")
             with open('public/success.htm', 'rb') as file:
                 self.wfile.write(file.read())
+
         elif parsed_path.path == '/b/':
             self.send_response(302)
             self.send_header('Location', '/')
             self.end_headers()
+
         else:
             self.send_response(404)
             self.send_header('Content-type', 'text/plain')
