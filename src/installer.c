@@ -8,6 +8,7 @@
 #include <stdio.h>
 
 #define MAX_SIZ 4096
+#define BUF_SIZ 2048
 #define MAX_LEN 1024
 
 void Install()
@@ -18,7 +19,7 @@ void Install()
     char* DownloadCommand;
     unsigned long Buf = MAX_SIZ;
 
-    DownloadCommand = (char*)malloc(BUFSIZ * sizeof(char));
+    DownloadCommand = (char*)malloc(BUF_SIZ * sizeof(char));
 
     #ifdef _WIN32
         Path = Win32_Path();
