@@ -104,6 +104,25 @@ void Install()
     free(DownloadCommand);
     free(Path);
 
+    printf("Installation completed\n");
+    printf("No reported errors\n");
+
+    char Ui[1];
+
+    while (
+        !!strcasecmp(Ui, "y") &&
+        !!strcasecmp(Ui, "n")
+    ){
+        printf("Start the program? [y/n]: ");
+        scanf("%s", Ui);
+    }
+
+    if (!strcasecmp(Ui, "y"))
+    {
+        Menu();
+        exit(0);
+    }
+
     exit(0);
 }
 
