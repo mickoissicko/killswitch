@@ -26,7 +26,8 @@ int main(int argc, char* argv[])
     std::snprintf(DownloadCommand, BUF_SIZ, "wget %s", DEPS);
 
     std::cout << "Welcome to the Low Orbit ION Death-Ray" << std::endl
-              << "[1] Start"                              << std::endl;
+              << "[1] Start"                              << std::endl
+              << "[2] Set process"                        << std::endl;
     std::cout << "[X] Quit"                               << std::endl;
 
     char* Path;
@@ -37,6 +38,7 @@ int main(int argc, char* argv[])
 
     while (
         !!strcasecmp(Ui, "1") &&
+        !!strcasecmp(Ui, "2") &&
         !!strcasecmp(Ui, "X")
     ){
         std::cout << "> ";
@@ -58,6 +60,27 @@ int main(int argc, char* argv[])
                 Install();
 
             CheckLockFile();
+        break;
+
+        case '2':
+            #ifdef _WIN32
+                Path = Win32_Path();
+            #else
+                Path = Posix_Path();
+            #endif
+
+            chdir(Path);
+
+            if (!std::filesystem::exists(LOIDR))
+            {
+                std::cout << "Run the program again after everything is installed" << '\n';
+                std::cout << "You do need 'wget' manually installed beforehand" << '\n';
+                std::cout << "Starting installation..." << '\n';
+                Install();
+            }
+
+            chdir(LOIDR);
+            GetProc(argc, argv);
         break;
 
         default: break;
