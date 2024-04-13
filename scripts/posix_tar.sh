@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# To lazy to test
+# Pray to god it works
+
 exists()
 {
     command -v "$1" > /dev/null 2 >& 1
