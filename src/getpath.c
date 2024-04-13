@@ -19,9 +19,7 @@
             Path = (char*)malloc(MAX_STR_LEN);
 
             if (Path != NULL)
-            {
                 strcpy(Path, Home->pw_dir);
-            }
         }
 
         return Path;
