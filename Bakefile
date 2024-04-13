@@ -1,7 +1,7 @@
 ! Long overdue
 ! Finally added it
 
-handler_src: [killproc.c];
+handler_src: [killproc.c ../getpath.c];
 handler_run: [cd src/handler/ && gcc]
 src: [getproc.c getpath.c installer.c main.cpp remfolders.cpp menu.c stderr.c];
 run: [cd src/ && g++];
