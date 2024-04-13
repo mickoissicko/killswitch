@@ -4,15 +4,11 @@
 #include <filesystem>
 #include <iostream>
 #include <unistd.h>
-#include <cstdlib>
 
 void RemoveFolders()
 {
     if (!std::filesystem::exists(LOIDR))
-    {
-        std::cout << "Program is wasn't installed" << '\n';
-        exit(0);
-    }
+        std::filesystem::create_directories(LOIDR);
 
     if (std::filesystem::exists(LOIDR))
     {
