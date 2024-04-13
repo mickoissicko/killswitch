@@ -1,0 +1,12 @@
+! Long overdue
+! Finally added it
+
+src: [getpath.c installer.c main.cpp remfolders.cpp menu.c stderr.c];
+run: [cd src/ && g++];
+
+!main{
+    >[run] -o ../bin/out [src];
+}
+
+!serve{}
+
