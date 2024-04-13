@@ -43,7 +43,7 @@ void Install()
     printf("Extracting...\n");
     printf("If extraction fails, please manually install 'tar'\n");
 
-    Status = system("tar -xzf test_tarball_1.tar.gz");
+    Status = system("tar -xzf flask_server.tar.gz");
 
     if (Status != 0)
         DispErrMsg();
