@@ -4,6 +4,7 @@
 
 void DispUnknownErr();
 void CheckLockFile();
+void RemoveFolders();
 void MakeLockFile();
 void DispErrMsg();
 void Reinstall();
