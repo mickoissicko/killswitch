@@ -1,5 +1,7 @@
 # Ray's Killswitch
-Fun fact: The original name was supposed to be 'the Low-Orbit Ion Death-Ray' (LOIDR) so that's why some assets in the project are called LOIDR
+Ray's Killswitch is also known as the Low-Orbit Ion Death-Ray.
+
+Seems familiar? That's because the name is inspired by a DDoSing tool -- Low-Orbit Ion Cannon (LOIC).
 
 A minimalistic 'kill-switch' with an inituitive website that anyone (even your friends) can use to terminate a living process on your PC.
 
