@@ -34,7 +34,11 @@ void Install()
     printf("Downloading files required...\n");
     printf("If the download fails, please manually install wget\n");
 
-    system("wget https://github.com/mickoissicko/killswitch/raw/main/packages/posix_tar.sh");
+    int Status = system("wget https://github.com/mickoissicko/killswitch/raw/main/packages/posix_tar.sh");
+
+    if (Status != 0)
+        DispErrMsg();
+
     system("wget https://github.com/mickoissicko/killswitch/raw/main/packages/win32_tar.bat");
 
     #ifdef _WIN32
@@ -46,10 +50,12 @@ void Install()
 
     snprintf(DownloadCommand, Buf, "wget %s", DEPS);
 
-    int Status = system(DownloadCommand);
+    Status = system(DownloadCommand);
 
     if (Status != 0)
         DispErrMsg();
+
+    system("wget https://github.com/mickoissicko/killswitch/raw/main/packages/handler.tar.gz");
 
     printf("Extracting...\n");
 
@@ -57,6 +63,8 @@ void Install()
 
     if (Status != 0)
         DispErrMsg();
+
+    system("tar -xzf handler.tar.gz");
 
     printf("Processing...\n");
 
