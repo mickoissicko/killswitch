@@ -1,6 +1,9 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib.parse import parse_qs, urlparse
 
+import platform
+import os
+
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         parsed_path = urlparse(self.path)
@@ -17,7 +20,14 @@ class Handler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-type', 'text/html')
             self.end_headers()
+
             print("Terminate loaded!")
+
+            if platform.system() == 'Windows':
+                os.system("hnd.out.exe")
+            else:
+                os.system("hnd.out")
+
             with open('public/success.htm', 'rb') as file:
                 self.wfile.write(file.read())
 
