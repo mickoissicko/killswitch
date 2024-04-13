@@ -1,4 +1,5 @@
 #include "common/common.h"
+#include "common/consts.h"
 
 #include <filesystem>
 #include <unistd.h>
@@ -11,9 +12,6 @@
 #define MAX_PATH_SIZ 4096
 #define BUF_SIZ 1024
 #define MAX_SIZ 1
-
-const static char LOIDR[] = "Loidr";
-const static char DEPS[] = "https://raw.githubusercontent.com/mickoissicko/killswitch/main/pkgs/test_tarball_1.tar.gz";
 
 int main(int argc, char* argv[])
 {
@@ -60,38 +58,7 @@ int main(int argc, char* argv[])
             chdir(Path);
 
             if (!std::filesystem::exists(LOIDR))
-            {
-                std::filesystem::create_directories(LOIDR);
-
-                if (!std::filesystem::exists(LOIDR))
-                    DispUnknownErr();
-
-                else
-                    chdir(LOIDR);
-
-                std::cout << "Downloading files required..." << '\n';
-                std::cout << "If the download fails, please manually install 'wget'" << '\n';
-
-                int Status = std::system(DownloadCommand);
-
-                if (Status != 0)
-                    DispErrMsg();
-
-                std::cout << "Extracting..." << '\n';
-                std::cout << "If extracting fails, please manually install 'tar'" << '\n';
-
-                Status = std::system("tar -xzf test_tarball_1.tar.gz");
-
-                if (Status != 0)
-                    DispErrMsg();
-
-                std::cout << "Processing..." << '\n';
-
-                std::ofstream LockFile("lock.pa");
-                LockFile << "If you delete this file, LOIDR will reinstall itself!" << '\n';
-                LockFile.close();
                 Install();
-            }
 
             CheckLockFile();
         break;
@@ -99,9 +66,9 @@ int main(int argc, char* argv[])
         default: break;
     }
 
-    free (DownloadCommand);
-    free (Path);
-    free (Ui);
+    free(DownloadCommand);
+    free(Path);
+    free(Ui);
 
     return 0;
 }
@@ -116,8 +83,10 @@ void CheckLockFile()
         chdir("..");
         std::filesystem::remove_all(LOIDR);
         std::cout << "Run the program again" << '\n';
+        std::cout << "The LOIDR folder seems to be corrupt..." << '\n';
         exit(1);
     }
+
     if (LockFile.is_open())
     {
         LockFile.close();
