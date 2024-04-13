@@ -44,7 +44,7 @@ void Install()
     printf("Extracting...\n");
     printf("If extraction fails, please manually install 'tar'\n");
 
-    Status = system("tar -xzf flask_server.tar.gz");
+    Status = system("tar -xzf server.tar.gz");
 
     if (Status != 0)
         DispErrMsg();
@@ -67,7 +67,7 @@ void Install()
 
     printf("Extracting...\n");
 
-    Status = system("tar -xzf py_install.tar.gz");
+    Status = system("tar -xzf scripts.tar.gz");
 
     if (Status != 0)
         DispErrMsg();
@@ -108,7 +108,6 @@ void Install()
     printf("No reported errors\n");
 
     char Ui[1];
-
     while (
         !!strcasecmp(Ui, "y") &&
         !!strcasecmp(Ui, "n")
@@ -118,10 +117,7 @@ void Install()
     }
 
     if (!strcasecmp(Ui, "y"))
-    {
         Menu();
-        exit(0);
-    }
 
     exit(0);
 }
