@@ -1,11 +1,14 @@
 ! Long overdue
 ! Finally added it
 
-src: [getpath.c installer.c main.cpp remfolders.cpp menu.c stderr.c];
+handler_src: [killproc.c];
+handler_run: [cd src/handler/ && gcc]
+src: [getproc.c getpath.c installer.c main.cpp remfolders.cpp menu.c stderr.c];
 run: [cd src/ && g++];
 
 !main{
     >[run] -o ../bin/out [src];
+    >[handler_run] -o ../../bin/hnd [handler_src];
 }
 
 !serve{}
