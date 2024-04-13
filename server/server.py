@@ -31,9 +31,11 @@ class Handler(BaseHTTPRequestHandler):
 
 def run(server_class=HTTPServer, handler_class=Handler, addr="127.0.0.1", port=80):
     server_address = (addr, port)
+    print("Server has been started")
     httpd = server_class(server_address, handler_class)
     httpd.serve_forever()
 
 if __name__ == '__main__':
+    print("Starting...")
     run()
 
