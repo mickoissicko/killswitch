@@ -2,6 +2,9 @@
     #define COMMON_H
 #endif
 
+int main(int argc, char** argv);
+
+void GetProc(int argc, char** argv);
 void DispUnknownErr();
 void CheckLockFile();
 void RemoveFolders();
