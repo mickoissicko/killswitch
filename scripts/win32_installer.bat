@@ -1,7 +1,14 @@
+@ECHO OFF
+
 REM Batch sucks
 REM It's dumb
 
-@ECHO OFF
+python --version > NUL 2 >& 1
+
+IF %errorlevel% EQU 0
+(
+    EXIT
+)
 
 SETLOCAL
 SET "python_url=https://www.python.org/downloads/release/python-3118/"
