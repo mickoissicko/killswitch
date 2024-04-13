@@ -12,19 +12,6 @@
 
 void Install()
 {
-    unsigned long Buf = MAX_LEN;
-    static char DownloadCommand[MAX_LEN];
-    
-    printf("Installing required packages...\n");
-
-    snprintf(DownloadCommand, Buf, "wget %s", PYPK);
-    system(DownloadCommand);
-
-    exit(0);
-}
-
-void Reinstall()
-{
     FILE* lock;
     char* Path = (char*)malloc(MAX_SIZ * sizeof(char));
 
