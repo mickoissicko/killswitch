@@ -35,6 +35,30 @@ elif exists zypper; then
     # Opensussy
     sudo zypper install -y python3
 
+elif exists brew; then
+    # MacOS
+    brew install python3
+
+elif exists port; then
+    # MacOS
+    sudo port install python3
+
+elif exists pkg; then
+    # FreeBSD
+    sudo pkg install -y python3
+
+elif exists emerge; then
+    # Gentoo
+    sudo emerge --ask --noreplace dev-lang/python
+
+elif exists eopkg; then
+    # Solus
+    sudo eopkg install -y python3
+
+elif exists guix; then
+    # Guix
+    sudo guix package -i python
+
 else
     echo 'Unsupported package manager, install Python manually'
     exit 1
