@@ -27,7 +27,7 @@
 #else
     char* Win32_Path()
     {
-        unsigned long LEN = MAX_PATH_LEN;
+        unsigned long LEN = MAX_STR_LEN;
 
         char* HomeDirectory = getenv("USERPROFILE");
 
