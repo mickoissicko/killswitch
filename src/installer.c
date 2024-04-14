@@ -133,6 +133,8 @@ void Install()
 
     if (!strcasecmp(Ui, "y"))
     {
+        getchar();
+
         char ProcName[MAX_SIZ];
 
         printf("Enter process name: ");
