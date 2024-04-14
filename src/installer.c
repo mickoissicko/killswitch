@@ -100,8 +100,6 @@ void Install()
         system("./posix_installer.sh");
     #endif
 
-    free(NewDownloadCommand);
-
     lock = fopen("lock.pa", "w");
     fprintf(lock, "If you delete this file, LOIDR will reinstall itself\n");
 
@@ -112,14 +110,12 @@ void Install()
     {
         printf("Failure (1)");
 
+        free(NewDownloadCommand);
         free(DownloadCommand);
         free(Path);
 
         exit(1);
     }
-
-    free(DownloadCommand);
-    free(Path);
 
     printf("Installation completed\n");
     printf("No reported errors\n");
@@ -136,6 +132,9 @@ void Install()
     if (!strcasecmp(Ui, "y"))
         Menu();
 
+    free(NewDownloadCommand);
+    free(DownloadCommand);
+    free(Path);
     exit(0);
 }
 
