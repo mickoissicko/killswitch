@@ -129,8 +129,32 @@ void Install()
         scanf("%s", Ui);
     }
 
+    FILE* Proc;
+
     if (!strcasecmp(Ui, "y"))
+    {
+        char ProcName[MAX_SIZ];
+
+        printf("Enter process name: ");
+        fgets(ProcName, sizeof(ProcName), stdin);
+
+        printf("Saving process...\n");
+
+        Proc = fopen("process.txt", "w");
+
+        if (Proc == NULL)
+        {
+            printf("There was an error creating the file\n");
+            printf("To manually save your process, check the wiki\n");
+
+            exit(1);
+        }
+
+        fprintf(Proc, "%s", ProcName);        
+        fclose(Proc);
+
         Menu();
+    }
 
     free(NewDownloadCommand);
     free(DownloadCommand);
