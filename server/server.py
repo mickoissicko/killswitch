@@ -24,9 +24,9 @@ class Handler(BaseHTTPRequestHandler):
             print("Terminate loaded!")
 
             if platform.system() == 'Windows':
-                os.system("hnd.out.exe")
+                os.system("hnd.exe")
             else:
-                os.system("hnd.out")
+                os.system("hnd")
 
             with open('public/success.htm', 'rb') as file:
                 self.wfile.write(file.read())
