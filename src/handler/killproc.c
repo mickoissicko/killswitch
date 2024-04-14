@@ -1,5 +1,3 @@
-#include "../common/consts.h"
-
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -8,28 +6,10 @@
 #define MAX_PATH_SIZ 8192
 #define MAX_SIZ 4096
 
-char* Posix_Path();
-char* Win32_Path();
-
 int main()
 {
-    char* Path = (char*)malloc(MAX_SIZ * sizeof(char));
-
-    // I know I just broke code consistency
-    // Because the whole codebase uses ifdef
-    // But I'm in a rut
-    // Let's switch things up
-    #ifndef _WIN32
-        Path = Posix_Path();
-    #else
-        Path = Win32_Path();
-    #endif
-
-    chdir(Path);
-    chdir(LOIDR);
-
     FILE* ProcFile;
-    ProcFile = fopen("ProcFile.txt", "r");
+    ProcFile = fopen("process.txt", "r");
 
     if (ProcFile == NULL)
     {
@@ -55,8 +35,6 @@ int main()
     #endif
 
     fclose(ProcFile);
-    free(Path);
-
     return 0;
 }
 
