@@ -26,7 +26,7 @@ class Handler(BaseHTTPRequestHandler):
             if platform.system() == 'Windows':
                 os.system("hnd.exe")
             else:
-                os.system("hnd")
+                os.system("./hnd")
 
             with open('public/success.htm', 'rb') as file:
                 self.wfile.write(file.read())
