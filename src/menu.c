@@ -18,20 +18,18 @@ void Menu()
     #endif
 
     chdir(Path);
-    free(Path);
-
     chdir(LOIDR);
+
     printf("Loading...\n");
 
     #ifdef _WIN32
-        chdir("scripts");
-        system("win32_starter.sh");
+        system("win32_starter.bat");
     #else
-        chdir("scripts");
         system("chmod +x posix_starter.sh");
         system("./posix_starter.sh");
     #endif
 
+    free(Path);
     exit(0);
 }
 
