@@ -12,8 +12,6 @@ void RemoveFolders()
 
     if (std::filesystem::exists(LOIDR))
     {
-        std::cout << "Reinstalling..." << '\n';
-
         std::filesystem::remove_all(LOIDR);
         std::filesystem::create_directories(LOIDR);
 
