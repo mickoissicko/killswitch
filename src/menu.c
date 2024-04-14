@@ -25,8 +25,7 @@ void Menu()
     #ifdef _WIN32
         system("win32_starter.bat");
     #else
-        system("chmod +x posix_starter.sh");
-        system("./posix_starter.sh");
+        system("sudo python3 server.py");
     #endif
 
     free(Path);
