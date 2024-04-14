@@ -19,7 +19,6 @@ int main()
     // Because the whole codebase uses ifdef
     // But I'm in a rut
     // Let's switch things up
-
     #ifndef _WIN32
         Path = Posix_Path();
     #else
@@ -27,9 +26,6 @@ int main()
     #endif
 
     chdir(Path);
-    // If it doesn't exist
-    // The program will crash
-    // And I'm not gonna do shit about it
     chdir(LOIDR);
 
     FILE* ProcFile;
