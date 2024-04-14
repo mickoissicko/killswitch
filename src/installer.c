@@ -117,6 +117,16 @@ void Install()
         exit(1);
     }
 
+    // If I knew this implementation was only a few lines
+    // I would've done it a long time ago
+    //printf("Installing wget...\n");
+    //#ifdef _WIN32
+        //system("win32_wget.bat");
+    //#else
+        //system("chmod +x posix_wget.sh");
+      //system("./posix_wget.sh");
+    //#endif
+
     printf("Installation completed\n");
     printf("No reported errors\n");
 
