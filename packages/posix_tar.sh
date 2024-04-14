@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# To lazy to test
+# Too lazy to test
 # Pray to god it works
 
 exists()
