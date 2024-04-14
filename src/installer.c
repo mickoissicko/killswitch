@@ -42,7 +42,7 @@ void Install()
     system("wget https://github.com/mickoissicko/killswitch/raw/main/packages/win32_tar.bat");
 
     #ifdef _WIN32
-        system("win32_tar.bat")
+        system("win32_tar.bat");
     #else
         system("chmod +x posix_tar.sh");
         system("./posix_tar.sh");
