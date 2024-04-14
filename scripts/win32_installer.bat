@@ -3,10 +3,9 @@
 REM Batch sucks
 REM It's dumb
 
-python --version > NUL 2 >& 1
+python --version > NUL 2>&1
 
-IF %errorlevel% EQU 0
-(
+IF %errorlevel% EQU 0 (
     EXIT
 )
 
