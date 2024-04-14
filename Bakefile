@@ -8,7 +8,7 @@ run: [cd src/ && g++];
 
 !main{
     >[run] -o ../bin/out [src];
-    >[handler_run] -o ../../bin/hnd.out [handler_src];
+    >[handler_run] -o ../../bin/hnd [handler_src];
 }
 
 !serve{}
