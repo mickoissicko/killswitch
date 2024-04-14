@@ -3,7 +3,7 @@
 
 void DispErrMsg()
 {
-    printf("An error occurred: %s\n", stderr);
+    printf("An error occurred\n%s\n", stderr);
     printf("Read the wiki for instructions!\n");
 
     exit(1);
@@ -11,7 +11,7 @@ void DispErrMsg()
 
 void DispUnknownErr()
 {
-    printf("An unexpected exception occurred: %s\n", stderr);
+    printf("An unexpected exception occurred\n%s\n", stderr);
     printf("Read the wiki for instructions!\n");
 
     exit(1);
